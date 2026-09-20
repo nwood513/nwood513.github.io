@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="对魔忍官方网站 - 提供对魔忍系列漫画、动画及相关同人作品的深度解读、角色图鉴、剧情分析及社区讨论。探索暗黑奇幻世界中的战斗与羁绊。">
+    <meta name="keywords" content="对魔忍,对魔忍官网,对魔忍漫画,对魔忍动画,对魔忍图鉴">
+    <title>对魔忍-暗黑奇幻战斗与羁绊的终极图鉴</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8a0b0b;
+            --secondary-color: #2c0e0e;
+            --accent-color: #ff4d4d;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-unit);
+            border-left: 4px solid var(--accent-color);
+            padding-left: var(--spacing-unit);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('https://picsum.photos/seed/mugen/1920/1080') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Character Grid */
+        .characters {
+            padding: 4rem 0;
+        }
+
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .char-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .char-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .char-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.3s;
+        }
+
+        .char-card:hover .char-img {
+            filter: grayscale(0%);
+        }
+
+        .char-info {
+            padding: 1.5rem;
+        }
+
+        .char-name {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .char-role {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .char-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Latest Updates / Episodes */
+        .episodes {
+            background-color: #1a1a1a;
+            padding: 4rem 0;
+        }
+
+        .episode-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .episode-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 3px solid transparent;
+        }
+
+        .episode-item:hover {
+            border-left-color: var(--accent-color);
+            background-color: #252525;
+        }
+
+        .ep-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .ep-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .read-btn {
+            padding: 0.4rem 1rem;
+            background-color: #333;
+            color: white;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+
+        .read-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 4rem 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .info-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .info-content p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .info-sidebar {
+            background-color: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .info-sidebar h3 {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { height: 400px; }
+            .nav-menu { display: none; } /* Simplified for mobile */
+            .info-grid { grid-template-columns: 1fr; }
+            .header-inner { flex-direction: column; gap: 1rem; }
+            .section-title { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">AQUA STUDIO</div>
+            <nav class="nav-menu">
+                <a href="#">首页</a>
+                <a href="#">作品库</a>
+                <a href="#">角色图鉴</a>
+                <a href="#">资讯</a>
+                <a href="#">社区</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>对魔忍：血色终焉</h1>
+                    <p>在异世界与暗黑势力的激战中，为了守护人类最后的希望，对魔忍们展开了殊死搏斗。探索这个充满杀戮与羁绊的暗黑奇幻世界。</p>
+                    <a href="#latest" class="btn">开始阅读</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Character Section -->
+        <section class="characters container">
+            <div class="section-title">
+                <h2>核心角色</h2>
+                <span>Character Guide</span>
+            </div>
+            <div class="char-grid">
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/ryona/400/500" alt="主角" class="char-img">
+                    <div class="char-info">
+                        <h3 class="char-name">绫小路 红音</h3>
+                        <p class="char-role">对魔忍 A级 / 突击队长</p>
+                        <p class="char-desc">拥有极高的战斗技巧，性格冷酷但内心有着不为人知的温柔。擅长使用双刀与暗杀术。</p>
+                    </div>
+                </article>
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/akagi/400/500" alt="角色" class="char-img">
+                    <div class="char-info">
+                        <h3 class="char-name">秋山 麻衣</h3>
+                        <p class="char-role">对魔忍 B级 / 情报官</p>
+                        <p class="char-desc">冷静理智的情报分析专家，擅长心理战与陷阱。是队伍中的大脑。</p>
+                    </div>
+                </article>
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/risa/400/500" alt="角色" class="char-img">
+                    <div class="char-info">
+                        <h3 class="char-name">柳生 玲奈</h3>
+                        <p class="char-role">对魔忍 C级 / 突击手</p>
+                        <p class="char-desc">年轻的天才剑士，充满活力，对红音有着复杂的情感。擅长使用长枪。</p>
+                    </div>
+                </article>
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/momiji/400/500" alt="角色" class="char-img">
+                    <div class="char-info">
+                        <h3 class="char-name">葵</h3>
+                        <p class="char-role">对魔忍 S级 / 狙击手</p>
+                        <p class="char-desc">拥有极高的射击天赋，性格孤僻，但为了同伴可以牺牲一切。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Latest Updates -->
+        <section class="episodes" id="latest">
+            <div class="container">
+                <div class="section-title">
+                    <h2>最新章节</h2>
+                    <span>Latest Updates</span>
+                </div>
+                <div class="episode-list">
+                    <div class="episode-item">
+                        <div>
+                            <span class="ep-title">对魔忍 412话：终焉的序曲</span>
+                            <div class="ep-meta">发布日期: 2023-10-15 | 类型: 漫画更新</div>
+                        </div>
+                        <a href="#" class="read-btn">阅读</a>
+                    </div>
+                    <div class="episode-item">
+                        <div>
+                            <span class="ep-title">对魔忍 动画剧场版：暗影降临</span>
+                            <div class="ep-meta">发布日期: 2023-09-28 | 类型: 影视资讯</div>
+                        </div>
+                        <a href="#" class="read-btn">观看</a>
+                    </div>
+                    <div class="episode-item">
+                        <div>
+                            <span class="ep-title">对魔忍 外传：赤瞳的过去</span>
+                            <div class="ep-meta">发布日期: 2023-09-10 | 类型: 番外篇</div>
+                        </div>
+                        <a href="#" class="read-btn">阅读</a>
+                    </div>
+                    <div class="episode-item">
+                        <div>
+                            <span class="ep-title">对魔忍 剧情解析：世界观设定</span>
+                            <div class="ep-meta">发布日期: 2023-08-25 | 类型: 深度文章</div>
+                        </div>
+                        <a href="#" class="read-btn">查看</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info / FAQ Section -->
+        <section class="info-section container">
+            <div class="info-grid">
+                <div class="info-content">
+                    <h3>关于对魔忍系列</h3>
+                    <p>《对魔忍》是由AQUA STUDIO制作发行的成人向动作冒险漫画系列。故事背景设定在一个拥有魔法与科技并存的现代世界，人类与魔族之间维持着脆弱的和平。为了应对突发的大型魔族入侵事件，秘密组织“对魔忍”应运而生。</p>
+                    <p>该系列以其激烈的战斗场面、复杂的剧情发展以及鲜明的人物性格著称。除了主线漫画外，还推出了多部外传作品及改编动画。</p>
+                    <p>本站致力于为读者提供最全面的角色资料、剧情解读以及正版阅读渠道指引。</p>
+                </div>
+                <aside class="info-sidebar">
+                    <h3>常见问题 (FAQ)</h3>
+                    <div class="faq-item">
+                        <div class="faq-question">对魔忍适合什么年龄阅读？</div>
+                        <div class="faq-answer">该系列包含成人向内容、暴力描写及部分露骨情节，仅限18岁以上读者观看。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">在哪里可以观看正版漫画？</div>
+                        <div class="faq-answer">请关注官方授权平台，支持创作者的原创劳动成果。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">动画版和漫画版剧情一致吗？</div>
+                        <div class="faq-answer">动画版主要选取了漫画中的经典篇章进行改编，部分剧情会有所差异。</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>AQUA STUDIO</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">联系合作</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>资源导航</h4>
+                    <ul>
+                        <li><a href="#">漫画下载</a></li>
+                        <li><a href="#">角色壁纸</a></li>
+                        <li><a href="#">同人作品</a></li>
+                        <li><a href="#">周边商城</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>社区交流</h4>
+                    <ul>
+                        <li><a href="#">官方论坛</a></li>
+                        <li><a href="#">粉丝群组</a></li>
+                        <li><a href="#">投稿指南</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 对魔忍资料站. All Rights Reserved. 本站为粉丝性质的非盈利性资源整理与资讯平台。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
