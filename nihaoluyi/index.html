@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="你好陆医生 - 专业的家庭医生健康服务平台，提供在线问诊、慢病管理、健康档案及医疗资讯服务，致力于为用户提供便捷、可靠的医疗健康咨询。">
+    <meta name="keywords" content="你好陆医生, 在线问诊, 家庭医生, 慢病管理, 医疗咨询">
+    <title>你好陆医生-专业家庭医生在线问诊与健康服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --primary-light: #e6f0fa;
+            --secondary-color: #00c853;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --bg-body: #f5f7fa;
+            --bg-card: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-card);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #004499 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box {
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            display: inline-flex;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 0 20px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: white;
+            padding: 60px 0;
+        }
+
+        .feature-split {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .feature-split:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .feature-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .feature-img {
+            flex: 1;
+            background: var(--primary-light);
+            border-radius: var(--radius);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 60px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        details {
+            background: var(--bg-card);
+            margin-bottom: 15px;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+";
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        details[open] summary::after {
+            content: "-";
+        }
+
+        .faq-content {
+            padding: 0 20px 20px;
+            color: var(--text-secondary);
+            border-top: 1px solid #eee;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info p {
+            opacity: 0.7;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                height: auto;
+                padding: 15px 0;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-split, .feature-split:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .feature-img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-color);">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                你好陆医生
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#services">科室分类</a></li>
+                    <li><a href="#features">服务优势</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline">登录</button>
+                <button class="btn btn-primary">立即问诊</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>您的私人家庭医生在线</h1>
+                <p>随时随地连接专业医师，提供7x24小时健康咨询、慢病管理与就医指导。</p>
+                <div class="search-box">
+                    <input type="text" placeholder="输入症状或疾病名称，如：感冒、高血压...">
+                    <button>搜索医生</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>全方位健康守护</h2>
+                    <p>涵盖内科、外科、皮肤科、儿科等十余个科室，满足家庭全年龄段医疗需求</p>
+                </div>
+                <div class="grid-3">
+                    <article class="service-card">
+                        <div class="icon-box">💬</div>
+                        <h3>图文咨询</h3>
+                        <p>文字描述病情，医生回复分析，快速获取诊疗建议，费用透明。</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="icon-box">📞</div>
+                        <h3>电话问诊</h3>
+                        <p>与医生直接通话交流，适合需要详细沟通或复诊随访的患者。</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="icon-box">📊</div>
+                        <h3>慢病管理</h3>
+                        <p>针对高血压、糖尿病等慢性病提供长期健康档案与用药跟踪服务。</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="icon-box">👶</div>
+                        <h3>儿科专区</h3>
+                        <p>专业儿科医生在线，解答宝宝喂养、发育及常见病症问题。</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="icon-box">🧬</div>
+                        <h3>体检解读</h3>
+                        <p>上传体检报告，医生为您一对一解读异常指标，提供改善方案。</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="icon-box">🚑</div>
+                        <h3>就医导诊</h3>
+                        <p>指导您如何挂号、选择科室、预估就诊时间，避免盲目奔波。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="feature-split">
+                    <div class="feature-text">
+                        <h3>专业医师团队</h3>
+                        <p>我们严格筛选三甲医院及专科医师入驻，所有医生均具备正规执业资质。平台提供医生的专业背景、职称、擅长领域及用户真实评价，让您在问诊前充分了解医生实力。</p>
+                        <ul class="feature-list">
+                            <li>执业医师资格认证</li>
+                            <li>三甲医院背景医生</li>
+                            <li>真实用户评价体系</li>
+                        </ul>
+                    </div>
+                    <div class="feature-img">
+                        <div style="text-align: center;">
+                            <div style="font-size: 60px; margin-bottom: 10px;">👨‍⚕️</div>
+                            <div>医生团队展示</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-split">
+                    <div class="feature-text">
+                        <h3>隐私安全保护</h3>
+                        <p>您的健康信息是隐私。平台采用银行级数据加密技术，确保病历、咨询记录仅医生可见，绝不上传至公共数据库。符合国家网络安全法规，让您看病更放心。</p>
+                        <ul class="feature-list">
+                            <li>数据加密传输与存储</li>
+                            <li>严格的权限管理</li>
+                            <li>符合医疗隐私法规</li>
+                        </ul>
+                    </div>
+                    <div class="feature-img">
+                        <div style="text-align: center;">
+                            <div style="font-size: 60px; margin-bottom: 10px;">🔒</div>
+                            <div>隐私安全中心</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <div class="section-title">
+                    <h2>常见问题解答</h2>
+                    <p>关于在线问诊的疑问，这里都有答案</p>
+                </div>
+                <div class="faq-container">
+                    <details>
+                        <summary>在线问诊能代替去医院吗？</summary>
+                        <div class="faq-content">
+                            <p>在线问诊适用于常见病、多发病的咨询，以及慢性病的复诊随访。如果出现严重症状、突发急症或诊断不明确，请立即前往医院就诊，以免延误病情。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>如何选择合适的医生？</summary>
+                        <div class="faq-content">
+                            <p>您可以根据科室筛选，并查看医生的“擅长领域”和“用户评价”。对于复杂病症，建议选择职称较高、评价较好的专家医生进行咨询。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>咨询记录可以保存多久？</summary>
+                        <div class="faq-content">
+                            <p>您的咨询记录和电子病历将长期保存在您的账户中，您可以随时登录查看历史问诊记录，方便复诊参考。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>如果不满意医生的回复怎么办？</summary>
+                        <div class="faq-content">
+                            <p>您可以在咨询结束后对医生进行评价。如果对回复不满意，您可以申请退款或继续追问其他医生。</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="logo" style="color: white; margin-bottom: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        你好陆医生
+                    </div>
+                    <p>你好陆医生致力于通过互联网技术打破医疗资源的地域限制，让每个人都能享受到专业、便捷、可及的医疗服务。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">平台介绍</a></li>
+                        <li><a href="#">医生入驻</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">退款说明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li>客服热线：400-123-4567</li>
+                        <li>工作时间：8:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 你好陆医生 版权所有 | 互联网药品信息服务资格证书 (京)-经营性-2023-0000</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
