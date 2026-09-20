@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="海贼王在线 - 海贼王漫画、动漫全集在线观看，路飞、罗杰、白胡子等角色图鉴，剧情解析与航海士百科。提供高清免费在线阅读与最新资讯。">
+    <meta name="keywords" content="海贼王在线, 海贼王漫画, 海贼王动漫, 路飞, One Piece, 漫画阅读">
+    <title>海贼王在线-热血航海冒险全集观看与图鉴</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff6b00;
+            --secondary-color: #1a1a1a;
+            --accent-color: #ffcc00;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout Utilities */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .view-more {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        nav a.active, nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+        }
+
+        .search-box button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2b32b2 0%, #1488cc 100%);
+            padding: 3rem 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+        }
+
+        /* Manga Grid */
+        .manga-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .manga-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .manga-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-cover {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background-color: #ddd;
+        }
+
+        .card-info {
+            padding: 1rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tag {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .featured-content {
+            flex: 1;
+        }
+
+        .featured-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .featured-desc {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Character List */
+        .character-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .char-card {
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .char-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .char-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .char-role {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #888;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .featured-section {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <span>ONE</span>PIECE
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">漫画连载</a></li>
+                <li><a href="#">动漫全集</a></li>
+                <li><a href="#">角色图鉴</a></li>
+                <li><a href="#">资讯动态</a></li>
+            </ul>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="搜索路飞、草帽海贼团...">
+            <button>搜索</button>
+        </div>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="container">
+        <h1>海贼王在线：追逐梦想的伟大航路</h1>
+        <p>这里是《海贼王》粉丝的聚集地。提供最新的漫画连载、高清动漫观看、角色深度解析以及专属的海贼情报。加入草帽一伙，一起寻找大秘宝！</p>
+        <a href="#" class="btn">立即开始阅读</a>
+    </div>
+</div>
+
+<main class="container">
+
+    <!-- Latest Updates -->
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">最新连载</h2>
+            <a href="#" class="view-more">查看更多 &raquo;</a>
+        </div>
+        <div class="manga-grid">
+            <!-- Card 1 -->
+            <article class="manga-card">
+                <img src="https://picsum.photos/seed/op1/300/400" alt="海贼王漫画封面" class="card-cover">
+                <div class="card-info">
+                    <h3 class="card-title">海贼王 第1100话</h3>
+                    <div class="card-meta">
+                        <span class="tag">更新中</span>
+                        <span>2023-10-24</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Card 2 -->
+            <article class="manga-card">
+                <img src="https://picsum.photos/seed/op2/300/400" alt="海贼王漫画封面" class="card-cover">
+                <div class="card-info">
+                    <h3 class="card-title">海贼王 第1099话</h3>
+                    <div class="card-meta">
+                        <span class="tag">连载</span>
+                        <span>2023-10-17</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Card 3 -->
+            <article class="manga-card">
+                <img src="https://picsum.photos/seed/op3/300/400" alt="海贼王漫画封面" class="card-cover">
+                <div class="card-info">
+                    <h3 class="card-title">海贼王 第1098话</h3>
+                    <div class="card-meta">
+                        <span class="tag">连载</span>
+                        <span>2023-10-10</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Card 4 -->
+            <article class="manga-card">
+                <img src="https://picsum.photos/seed/op4/300/400" alt="海贼王漫画封面" class="card-cover">
+                <div class="card-info">
+                    <h3 class="card-title">海贼王 第1097话</h3>
+                    <div class="card-meta">
+                        <span class="tag">连载</span>
+                        <span>2023-10-03</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured-section">
+        <div class="featured-image">
+            <img src="https://picsum.photos/seed/strawhat/600/400" alt="草帽海贼团">
+        </div>
+        <div class="featured-content">
+            <h2 class="featured-title">草帽一伙：梦想的伙伴</h2>
+            <p class="featured-desc">
+                蒙奇·D·路飞为实现成为“海贼王”的梦想，集结了一群拥有各自独特能力的伙伴。从东海的初次相遇，到伟大航路的冒险，他们共同经历了无数的战斗与考验。每一位成员都有属于自己的过去和信念，正是这份羁绊让他们成为了世界上最强大的海贼团队。了解每位船员的故事，感受他们的热血与友情。
+            </p>
+            <a href="#" class="btn">查看全员图鉴</a>
+        </div>
+    </section>
+
+    <!-- Character Spotlight -->
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">人气角色</h2>
+            <a href="#" class="view-more">查看更多 &raquo;</a>
+        </div>
+        <div class="character-list">
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/luffy/200/200" alt="蒙奇·D·路飞" class="char-avatar">
+                <h4 class="char-name">蒙奇·D·路飞</h4>
+                <p class="char-role">船长</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/zoro/200/200" alt="罗罗诺亚·索隆" class="char-avatar">
+                <h4 class="char-name">罗罗诺亚·索隆</h4>
+                <p class="char-role">剑士</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/nami/200/200" alt="娜美" class="char-avatar">
+                <h4 class="char-name">娜美</h4>
+                <p class="char-role">航海士</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/sanji/200/200" alt="香吉士" class="char-avatar">
+                <h4 class="char-name">香吉士</h4>
+                <p class="char-role">厨师</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/robin/200/200" alt="妮可·罗宾" class="char-avatar">
+                <h4 class="char-name">妮可·罗宾</h4>
+                <p class="char-role">考古学家</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/chopper/200/200" alt="布鲁克" class="char-avatar">
+                <h4 class="char-name">布鲁克</h4>
+                <p class="char-role">音乐家</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News -->
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">最新资讯</h2>
+            <a href="#" class="view-more">查看更多 &raquo;</a>
+        </div>
+        <div class="manga-grid">
+            <article class="manga-card">
+                <img src="https://picsum.photos/seed/news1/300/200" alt="海贼王动画化新闻" class="card-cover" style="height: 180px;">
+                <div class="card-info">
+                    <h3 class="card-title">海贼王剧场版最新情报</h3>
+                    <p class="card-meta">2023-11-01 | 动漫资讯</p>
+                </div>
+            </article>
+            <article class="manga-card">
+                <img src="https://picsum.photos/seed/news2/300/200" alt="作者访谈" class="card-cover" style="height: 180px;">
+                <div class="card-info">
+                    <h3 class="card-title">尾田荣一郎访谈：关于大秘宝的伏笔</h3>
+                    <p class="card-meta">2023-10-28 | 漫画深度解析</p>
+                </div>
+            </article>
+            <article class="manga-card">
+                <img src="https://picsum.photos/seed/news3/300/200" alt="周边发售" class="card-cover" style="height: 180px;">
+                <div class="card-info">
+                    <h3 class="card-title">2024年海贼王官方手办发售计划</h3>
+                    <p class="card-meta">2023-10-25 | 周边商品</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>关于我们</h3>
+                <p>本站致力于为《海贼王》粉丝提供最优质的在线阅读体验和资讯服务。尊重原作者版权，内容仅供学习交流。</p>
+            </div>
+            <div class="footer-col">
+                <h3>快速导航</h3>
+                <ul>
+                    <li><a href="#">漫画连载</a></li>
+                    <li><a href="#">动漫全集</a></li>
+                    <li><a href="#">角色图鉴</a></li>
+                    <li><a href="#">热门话题</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="#">尾田荣一郎官方推特</a></li>
+                    <li><a href="#">One Piece Wiki</a></li>
+                    <li><a href="#">集英社官方网站</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 海贼王在线. All Rights Reserved. 本站为粉丝站，非官方网站。</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
