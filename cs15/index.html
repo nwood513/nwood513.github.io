@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CS1.5服务器 - 专业反恐精英1.5服务器搭建与优化指南，提供IP查询、配置教程、地图资源下载及社区交流服务。">
+    <meta name="keywords" content="CS1.5服务器,反恐精英1.5,服务器搭建,CS1.5配置,CS1.5地图,CS1.5 IP">
+    <title>CS1.5服务器-反恐精英1.5搭建配置与资源下载</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #e6b800; /* 经典的金黄色 */
+            --secondary-color: #2b2b2b; /* 深灰色 */
+            --accent-color: #00ff00; /* 绿色（代表可玩/在线） */
+            --bg-dark: #1a1a1a;
+            --bg-card: #252525;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-radius: 4px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 顶部导航 */
+        header {
+            background-color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .server-status {
+            font-size: 14px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(0, 255, 0, 0); }
+            100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://picsum.photos/seed/csgo1/1600/600') no-repeat center center/cover;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: #ffcc00;
+            box-shadow: 0 4px 15px rgba(230, 184, 0, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--text-main);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 服务器列表区域 */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        .server-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .server-card {
+            background-color: var(--bg-card);
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .server-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .server-header {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #444;
+        }
+
+        .server-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .server-mode {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background-color: #444;
+            color: #ccc;
+        }
+
+        .server-mode.dm { background-color: #d32f2f; color: white; }
+        .server-mode.ctf { background-color: #1976d2; color: white; }
+        .server-mode.tdm { background-color: #388e3c; color: white; }
+
+        .server-body {
+            padding: 20px;
+        }
+
+        .server-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .server-ip-box {
+            background-color: #000;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            border: 1px dashed #444;
+        }
+
+        .server-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-copy {
+            background-color: #444;
+            color: white;
+        }
+        .btn-copy:hover { background-color: #555; }
+
+        .btn-connect {
+            background-color: var(--accent-color);
+            color: black;
+            font-weight: bold;
+        }
+        .btn-connect:hover { background-color: #00cc00; }
+
+        /* 搭建教程区域 */
+        .tutorial-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .tutorial-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tutorial-item {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tutorial-item h3 {
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .tutorial-item p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .tutorial-item code {
+            display: block;
+            background-color: #111;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #aaddff;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+
+        .faq-section {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--border-radius);
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            padding-left: 10px;
+            border-left: 2px solid #444;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #111;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 13px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .tutorial-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .server-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                CS1.5<span>Server</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">服务器列表</a></li>
+                    <li><a href="#guide">搭建指南</a></li>
+                    <li><a href="#download">资源下载</a></li>
+                    <li><a href="#community">社区论坛</a></li>
+                </ul>
+            </nav>
+            <div class="server-status">
+                <div class="status-dot"></div>
+                全站在线
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>重温经典 <span>CS 1.5</span> 服务器</h1>
+                <p>寻找最稳定的反恐精英1.5联机环境，体验原汁原味的爆破模式与经典地图。提供全球热门服务器IP、搭建教程及资源下载。</p>
+                <div class="cta-buttons">
+                    <a href="#server-list" class="btn btn-primary">查看服务器</a>
+                    <a href="#guide" class="btn btn-outline">开始搭建</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Server List Section -->
+        <section id="server-list" class="section">
+            <div class="container">
+                <h2 class="section-title">热门服务器列表</h2>
+                <div class="server-grid">
+                    <!-- Server Card 1 -->
+                    <article class="server-card">
+                        <div class="server-header">
+                            <span class="server-name">经典爆破大厅</span>
+                            <span class="server-mode dm">爆破模式</span>
+                        </div>
+                        <div class="server-body">
+                            <div class="server-info">
+                                <span>📍 中国大陆</span>
+                                <span>👥 128/128</span>
+                            </div>
+                            <div class="server-ip-box">
+                                192.168.1.100:27015
+                            </div>
+                            <div class="server-actions">
+                                <button class="action-btn btn-copy" onclick="copyIp('192.168.1.100:27015')">复制IP</button>
+                                <a href="steam://connect/192.168.1.100:27015" class="action-btn btn-connect">直接连接</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Server Card 2 -->
+                    <article class="server-card">
+                        <div class="server-header">
+                            <span class="server-name">极速竞技场</span>
+                            <span class="server-mode tdm">团队死斗</span>
+                        </div>
+                        <div class="server-body">
+                            <div class="server-info">
+                                <span>📍 香港</span>
+                                <span>👥 64/64</span>
+                            </div>
+                            <div class="server-ip-box">
+                                203.0.113.50:27015
+                            </div>
+                            <div class="server-actions">
+                                <button class="action-btn btn-copy" onclick="copyIp('203.0.113.50:27015')">复制IP</button>
+                                <a href="steam://connect/203.0.113.50:27015" class="action-btn btn-connect">直接连接</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Server Card 3 -->
+                    <article class="server-card">
+                        <div class="server-header">
+                            <span class="server-name">创意工坊服</span>
+                            <span class="server-mode ctf">夺旗模式</span>
+                        </div>
+                        <div class="server-body">
+                            <div class="server-info">
+                                <span>📍 欧洲</span>
+                                <span>👥 32/32</span>
+                            </div>
+                            <div class="server-ip-box">
+                                45.33.32.10:27015
+                            </div>
+                            <div class="server-actions">
+                                <button class="action-btn btn-copy" onclick="copyIp('45.33.32.10:27015')">复制IP</button>
+                                <a href="steam://connect/45.33.32.10:27015" class="action-btn btn-connect">直接连接</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide" class="section" style="background-color: #1e1e1e;">
+            <div class="container">
+                <h2 class="section-title">CS1.5服务器搭建指南</h2>
+                <div class="tutorial-wrapper">
+                    <div class="tutorial-list">
+                        <div class="tutorial-item">
+                            <h3>1. 获取源码与文件</h3>
+                            <p>你需要从可靠的社区获取反恐精英1.5的源码包（如HLDS）。确保你的服务器环境支持Linux或Windows Server，并安装必要的运行库。</p>
+                        </div>
+                        <div class="tutorial-item">
+                            <h3>2. 配置 Server.cfg</h3>
+                            <p>这是最关键的一步。你需要设置服务器名称、最大连接数、地图轮换以及游戏规则。以下是一个基础配置示例：</p>
+                            <code>
+hostname "我的CS1.5服务器";\nsv_maxclients 32;\nmp_friendlyfire 1;\nmp_timelimit 45;\nsv_password ""
+                            </code>
+                        </div>
+                        <div class="tutorial-item">
+                            <h3>3. 启动与端口映射</h3>
+                            <p>使用 `hlds_run` 命令启动服务器，并确保你的路由器已开启TCP/UDP端口（默认27015）的映射，以便外网玩家能访问。</p>
+                        </div>
+                    </div>
+
+                    <aside class="faq-section">
+                        <h3 style="margin-bottom: 20px; color: var(--text-main);">常见问题 (FAQ)</h3>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">Q: 如何修改服务器地图？</div>
+                            <div class="faq-answer">A: 在控制台输入 `map de_dust2` 即可立即切换地图，或在 `mapcycle.txt` 文件中设置地图轮换列表。</div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">Q: 玩家连接提示连接超时？</div>
+                            <div class="faq-answer">A: 请检查防火墙设置，确保游戏端口未被拦截，并确认服务器IP地址正确无误。</div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">Q: 如何安装插件（如死亡模式、RCON）？</div>
+                            <div class="faq-answer">A: 将插件文件（.dll 或 .so）放入 `cstrike/addons` 目录，并在 `plugins.ini` 中启用对应的行。</div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="download" class="section">
+            <div class="container">
+                <h2 class="section-title">必备资源下载</h2>
+                <div class="server-grid">
+                    <div class="server-card" style="text-align: center; padding: 30px;">
+                        <h4 style="margin-bottom: 10px;">经典地图包</h4>
+                        <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">包含 de_dust2, cs_assault 等经典地图</p>
+                        <a href="#" class="btn btn-outline">下载 (85MB)</a>
+                    </div>
+                    <div class="server-card" style="text-align: center; padding: 30px;">
+                        <h4 style="margin-bottom: 10px;">官方 HLDS 安装包</h4>
+                        <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">适用于 Linux 和 Windows 的服务端核心</p>
+                        <a href="#" class="btn btn-outline">下载 (15MB)</a>
+                    </div>
+                    <div class="server-card" style="text-align: center; padding: 30px;">
+                        <h4 style="margin-bottom: 10px;">常用插件合集</h4>
+                        <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">包含防作弊、自动踢人等实用插件</p>
+                        <a href="#" class="btn btn-outline">下载 (2MB)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>关于本站</h4>
+                    <p style="color: #666; font-size: 14px;">我们致力于为CS1.5爱好者提供最全面的服务器资源、搭建教程和社区交流平台。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">服务器搜索</a></li>
+                        <li><a href="#">地图下载</a></li>
+                        <li><a href="#">插件库</a></li>
+                        <li><a href="#">提交服务器</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="#">Discord社区</a></li>
+                        <li><a href="#">QQ交流群</a></li>
+                        <li><a href="#">技术支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 CS1.5 Server Hub. All Rights Reserved. 仅供学习交流使用。
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyIp(ip) {
+            // 使用 Clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(ip).then(() => {
+                    showToast('IP地址已复制: ' + ip);
+                }, () => {
+                    fallbackCopyTextToClipboard(ip);
+                });
+            } else {
+                fallbackCopyTextToClipboard(ip);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('IP地址已复制: ' + text);
+            } catch (err) {
+                showToast('复制失败，请手动复制');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // 简单的 Toast 提示
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            toast.style.color = '#fff';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '4px';
+            toast.style.zIndex = '1000';
+            toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+            
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s';
+                setTimeout(() => document.body.removeChild(toast), 500);
+            }, 3000);
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+              </html>
