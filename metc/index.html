@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MetCN新模特官方网站，提供专业模特经纪、新锐模特发掘、时尚走秀资讯及行业交流平台。了解最新模特动态，探索时尚前沿。">
+    <meta name="keywords" content="metcn新模特, 新模特, 模特经纪, 时尚资讯, 走秀, 模特大赛">
+    <title>metcn新模特-新锐时尚模特发掘与经纪服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #c9a227;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-body: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #e5e5e5;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -21px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .section-link {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .section-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--bg-white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://picsum.photos/seed/fashion/1920/600') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Features / Stats */
+        .stats-bar {
+            background-color: var(--bg-white);
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Model Grid */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .model-card {
+            background: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        .model-image {
+            height: 400px;
+            width: 100%;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-image img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .model-card:hover .model-image img {
+            transform: scale(1.05);
+        }
+
+        .model-info {
+            padding: 20px;
+        }
+
+        .model-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .model-category {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .model-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 4px 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            color: var(--text-light);
+        }
+
+        /* Categories Section */
+        .categories {
+            background-color: var(--bg-white);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            position: relative;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .category-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* News Section */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 20px;
+            background: var(--bg-white);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .news-date {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .news-date .day {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+        }
+
+        .news-date .month {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .news-content h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.8;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #999;
+            padding: 60px 0 20px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                height: auto;
+                flex-direction: column;
+                padding: 15px 0;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .news-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .news-date {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+            .news-date .day {
+                font-size: 18px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">METCN<span>新模特</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#models">模特库</a></li>
+                    <li><a href="#categories">分类</a></li>
+                    <li><a href="#news">行业资讯</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">入驻经纪</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>发现新锐，定义未来</h1>
+                <p>MetCN新模特是国内领先的时尚模特资源平台，致力于发掘潜力新人，连接时尚产业上下游，打造专业、高效的模特经纪服务体系。</p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="#models" class="btn btn-primary">浏览模特库</a>
+                    <a href="#join" class="btn btn-outline" style="color: white; border-color: white;">成为签约模特</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>5000+</h3>
+                        <p>注册新模特</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>300+</h3>
+                        <p>合作经纪公司</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1200+</h3>
+                        <p>成功走秀案例</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>行业满意度</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Models -->
+        <section id="models" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">当季热门模特</h2>
+                    <a href="#" class="section-link">查看全部 &rarr;</a>
+                </div>
+                <div class="model-grid">
+                    <!-- Model Card 1 -->
+                    <article class="model-card">
+                        <div class="model-image">
+                            <img src="https://picsum.photos/seed/model1/400/600" alt="模特姓名">
+                        </div>
+                        <div class="model-info">
+                            <h3 class="model-name">林雅琪</h3>
+                            <span class="model-category">平面模特 / 商业</span>
+                            <div class="model-tags">
+                                <span class="tag">身高182cm</span>
+                                <span class="tag">武汉</span>
+                                <span class="tag">平面</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Model Card 2 -->
+                    <article class="model-card">
+                        <div class="model-image">
+                            <img src="https://picsum.photos/seed/model2/400/600" alt="模特姓名">
+                        </div>
+                        <div class="model-info">
+                            <h3 class="model-name">张子轩</h3>
+                            <span class="model-category">T台模特 / 超模</span>
+                            <div class="model-tags">
+                                <span class="tag">身高188cm</span>
+                                <span class="tag">上海</span>
+                                <span class="tag">T台</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Model Card 3 -->
+                    <article class="model-card">
+                        <div class="model-image">
+                            <img src="https://picsum.photos/seed/model3/400/600" alt="模特姓名">
+                        </div>
+                        <div class="model-info">
+                            <h3 class="model-name">Sophie Liu</h3>
+                            <span class="model-category">亚洲面孔 / 跨界</span>
+                            <div class="model-tags">
+                                <span class="tag">身高175cm</span>
+                                <span class="tag">北京</span>
+                                <span class="tag">影视</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Model Card 4 -->
+                    <article class="model-card">
+                        <div class="model-image">
+                            <img src="https://picsum.photos/seed/model4/400/600" alt="模特姓名">
+                        </div>
+                        <div class="model-info">
+                            <h3 class="model-name">王若琳</h3>
+                            <span class="model-category">平面模特 / 摄影师</span>
+                            <div class="model-tags">
+                                <span class="tag">身高168cm</span>
+                                <span class="tag">成都</span>
+                                <span class="tag">艺术</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section id="categories" class="section categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">模特分类</h2>
+                    <a href="#" class="section-link">查看分类 &rarr;</a>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <img src="https://picsum.photos/seed/cat1/400/300" alt="超模">
+                        <div class="category-overlay">
+                            <span class="category-title">超模</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://picsum.photos/seed/cat2/400/300" alt="平面模特">
+                        <div class="category-overlay">
+                            <span class="category-title">平面模特</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://picsum.photos/seed/cat3/400/300" alt="商业模特">
+                        <div class="category-overlay">
+                            <span class="category-title">商业模特</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://picsum.photos/seed/cat4/400/300" alt="童模">
+                        <div class="category-overlay">
+                            <span class="category-title">童模</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">行业动态</h2>
+                    <a href="#" class="section-link">更多资讯 &rarr;</a>
+                </div>
+                <div class="news-list">
+                    <article class="news-item">
+                        <div class="news-date">
+                            <span class="day">15</span>
+                            <span class="month">10月</span>
+                        </div>
+                        <div class="news-content">
+                            <h4>2023秋冬时装周上海站落幕，新锐力量崛起</h4>
+                            <p>本周，上海时装周迎来了闭幕式。MetCN新模特平台旗下的多位签约模特在多场大秀中亮相，展现了极高的专业素养和时尚表现力...</p>
+                        </div>
+                    </article>
+                    <article class="news-item">
+                        <div class="news-date">
+                            <span class="day">08</span>
+                            <span class="month">10月</span>
+                        </div>
+                        <div class="news-content">
+                            <h4>关于模特行业数字化转型的最新趋势分析</h4>
+                            <p>随着互联网技术的发展，传统的模特经纪模式正在发生变革。线上选角、短视频推广成为新晋模特快速出圈的重要途径...</p>
+                        </div>
+                    </article>
+                    <article class="news-item">
+                        <div class="news-date">
+                            <span class="day">28</span>
+                            <span class="month">09月</span>
+                        </div>
+                        <div class="news-content">
+                            <h4>MetCN新模特平台发布秋季模特招募计划</h4>
+                            <p>为了进一步扩充平台资源库，MetCN新模特正式启动秋季全球招募活动，旨在发掘更多具有国际潜力的时尚新面孔...</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="join" class="cta-section">
+            <div class="container">
+                <h2>准备好开启你的时尚之旅了吗？</h2>
+                <p>无论你是寻找经纪机会的潜力新人，还是需要优质模特资源的品牌方，MetCN新模特都是您值得信赖的合作伙伴。</p>
+                <a href="#" class="btn btn-primary" style="background: white; color: var(--primary-color);">立即联系我们</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>MetCN新模特</h3>
+                    <p>专注中国模特行业数字化发展，为时尚产业提供专业、高效、透明的模特资源对接服务。连接梦想与现实，见证每一次蜕变。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">平台简介</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">媒体报道</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>模特服务</h4>
+                    <ul>
+                        <li><a href="#">模特库</a></li>
+                        <li><a href="#">经纪签约</a></li>
+                        <li><a href="#">走秀通告</a></li>
+                        <li><a href="#">商务合作</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">抖音官方</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MetCN新模特 版权所有 | 京ICP备XXXXXXXX号</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
